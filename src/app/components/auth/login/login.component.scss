@@ -1,0 +1,96 @@
+@import "src/styles/variables.scss";
+
+.btn-link-active {
+    font-size: 20px;
+    color: $primary-blue;
+    padding: 5px 15px;
+    margin-right: 5px;
+    border-bottom: 2px solid $primary-red;
+}
+
+.btn-link-inactive {
+    font-size: 20px;
+    color: $primary-blue;
+    padding: 5px 15px;
+    margin-right: 5px;
+    border-bottom: 2px solid $scaffolding-grey-20;
+}
+
+.link:hover {
+    cursor: pointer;
+}
+
+.fade-in {
+    opacity: 0;
+    -webkit-animation: fadeIn ease-in 1;
+    -moz-animation: fadeIn ease-in 1;
+    animation: fadeIn ease-in 1;
+
+    -webkit-animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    animation-duration: 1s;
+}
+
+.icon-height {
+    height: auto;
+    max-height: 90px;
+    max-width: 100%;
+}
+
+.vertical-center {
+    margin-top: auto;
+    margin-bottom: auto;
+
+    @media(max-width:992px) {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+
+.background-white {
+    background-color: #fff;
+    border-bottom: 8px solid $primary-red;
+}
+
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.login-image {
+    max-width: 100%;
+
+    &.fade-in {
+        // Override for this specific case
+        transform: none !important;
+    }
+}

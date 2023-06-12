@@ -1,0 +1,198 @@
+<div class="fill-height main-container">
+  <form class="fill-height">
+    <ng-container id="tableActionBar">
+      <div class="row" *ngIf="!error">
+        <div class="col-sm-12">
+          <div class="row">
+            <div class="col-sm-12">
+              <span>Total items: {{ itemCount }}</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3 mb-md-0">
+              <div class="row mb-2">
+                <div class="col-md-3 mb-3 mb-md-0" *ngIf="filterConfigItems.length > 0">
+                  <div ngbDropdown class="d-inline-block">
+                    <button class="btn btn-secondary table-filter-btn" id="filterOptions" ngbDropdownToggle>
+                      <span class="fa fa-filter text-white"></span> Filter By
+                    </button>
+                    <div ngbDropdownMenu aria-labelledby="filterOptions" class="filter-dropdown">
+                      <div *ngFor="let filterItem of filterConfigItems">
+                        <div class="dropdownHeading">{{ filterItem.key }}</div>
+                        <div *ngFor="let filterOption of filterItem.filters">
+                          <button ngbDropdownItem (click)="addFilter(filterOption.id, filterItem.id)">
+                            {{ filterOption.name }}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-9">
+                  <div class="input-group">
+                    <ng-container *ngIf="canSearch">
+                      <input type="search" placeholder="Search" class="form-control" name="search-term"
+                        [(ngModel)]="searchTermValue" (input)="search()" (keydown.enter)="preventEnterEvent($event)" />
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 mb-3 mb-md-0">
+              <div class="align-right">
+                <ng-container *ngIf="downloadButton">
+                  <div class="btn-group mr-2">
+                    <button id="downloadOptions" type="button" class="btn btn-secondary dropdown-toggle"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Download
+                      <fa name="caret-down" class="ml-2"></fa>
+                    </button>
+                    <div class="dropdown-menu p-0 dropdown-menu-position" aria-labelledby="downloadOptions">
+                      <div class="dropdownHeading">CSV</div>
+                      <div *ngFor="let downloadOption of downloadButton.downloadOptions">
+                        <button ngbDropdownItem (click)="downloadCsv(downloadOption.id)">
+                          {{ downloadOption.name }}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+                <ng-container *ngIf="actionButtons.length > 0">
+                  <ng-container *ngFor="let actionBtn of actionButtons;">
+                    <button type="button" class="btn btn-primary ml-2" id="actionBtnId"
+                      (click)="actionClick(actionBtn.id)">
+                      <span [class]="iconClass"></span> {{ actionBtn.name }}
+                    </button>
+                  </ng-container>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </ng-container>
+
+    <ng-container id="tableContent">
+      <app-alert-message *ngIf="!loading && items.length == 0 && !error" [type]="'info'"
+        [message]="'No ' + page + ' found.'"></app-alert-message>
+
+      <app-alert-message *ngIf="!loading && items.length == 0" [type]="'info'" [message]="'No items here yet'">
+      </app-alert-message>
+
+      <div class="large-table fill-height">
+        <app-loader [loading]="loading" *ngIf="loading && headerColumnNames.length === 0"></app-loader>
+        <table class="table table-hover white-bg-color">
+          <thead [hidden]="items.length == 0">
+            <tr>
+              <th scope="col"></th>
+              <th scope="col" *ngIf="canBulkEdit">
+                <div class="form-check">
+                  <label class="form-check-label data-heading" for="selectAll">SELECT ALL</label>
+                </div>
+              </th>
+              <th *ngFor="let item of headerColumnNames" class="data-heading"
+                [ngClass]="{'not-sortable': !item.isSortable}" scope="col" sortable="{{item.keyValue}}"
+                (sort)="item.isSortable && onSort($event)">
+                {{item.name | uppercase}}
+                <span class="icon" [ngClass]="{'sort-both': item.sort === '' && item.isSortable}"
+                  (click)="sortItems(item)"></span>
+              </th>
+              <th scope="col" class="data-heading" *ngIf="hasActionCol"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="row-height" *ngFor="let item of items; let i = index">
+              <td *ngIf="!item.locked"></td>
+              <td *ngIf="item.locked">
+                <fa [name]="'lock'" [size]="'lg'" class="text-warning" [ngbTooltip]="toolTipText" placement="right">
+                </fa>
+              </td>
+              <td *ngFor="let row of item.html" [innerHTML]="row | snakeToCamelCaseString"></td>
+              <td class="right" *ngIf="hasActionCol">
+                <button class="btn btn-primary" (click)="viewItem(item)">View</button>
+                <button class="btn btn-primary ml-2" (click)="editItem(item)" *ngIf="hasActionColEdit">Edit</button>
+                <button class="btn btn-primary ml-2" (click)="selectItem(item)" *ngIf="hasActionColSelect">Select</button>
+                <button class="btn btn-primary ml-2" (click)="duplicateItem(item)"
+                  *ngIf="hasActionColDuplicate">Duplicate</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <app-alert-message *ngIf="error" [type]="'error'" [message]="'There was an error loading the results.'">
+          <button class="btn btn-link retry-link text-decoration-none" (click)="retry()">Retry?</button>
+        </app-alert-message>
+
+        <div class="row custom-section" *ngIf="!loading && items.length > 0 && !error">
+          <div class="col-sm-12">
+            <div class="row mt-3">
+              <nav class="col-md-9" aria-label="...">
+                <ul class="pagination justify-content-center">
+                  <li class="page-item" [ngClass]="{'disabled': currentPage == 1}" (click)="loadPage('first')">
+                    <span class="page-link page-navigation">First</span>
+                  </li>
+                  <li class="page-item" [ngClass]="{'disabled': currentPage == 1}" (click)="loadPage('previous')">
+                    <span class="page-link page-navigation">Previous</span>
+                  </li>
+                  <li class="page-item active">
+                    <span class="page-link">{{ currentPage }} / {{ totalPages }}</span>
+                  </li>
+                  <li class="page-item" [ngClass]="{'disabled': currentPage == totalPages}">
+                    <span class="page-link page-navigation" (click)="loadPage('next')">Next</span>
+                  </li>
+                  <li class="page-item" [ngClass]="{'disabled': currentPage == totalPages}">
+                    <span class="page-link page-navigation" (click)="loadPage('last')">Last</span>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="small-table fill-height">
+        <div class="item-container" *ngFor="let item of items" (click)="!item.locked? viewItem(item) : null;"
+          [ngClass]="{'selected': selectedTableItem === item, 'locked-item': item.locked}">
+          <div class="" *ngFor="let row of item.html; let i = index" [ngbTooltip]="item.locked ? toolTipText : null"
+            triggers="click" [autoClose]="true">
+            <span class="sidebar-title">{{headerColumnNames[i].name | titlecase}}: </span>
+            <span [innerHTML]="row"></span>
+          </div>
+          <div *ngIf="item.locked">
+            <fa [name]="'lock'" [size]="'lg'" class="text-warning d-flex justify-content-center"></fa>
+          </div>
+        </div>
+
+        <app-loader [loading]="loading"></app-loader>
+        <app-alert-message *ngIf="error" [type]="'error'" [message]="'There was an error loading the results.'">
+          <button class="btn btn-link retry-link text-decoration-none" (click)="retry()">Retry?</button>
+        </app-alert-message>
+
+        <div class="row custom-section">
+          <div class="col-sm-12" *ngIf="!loading && items.length > 0 && !error">
+            <div class="row mt-3">
+              <nav class="col-sm-12" aria-label="...">
+                <ul class="pagination justify-content-center">
+                  <li class="page-item w-90" [ngClass]="{'disabled': currentPage == 1}" (click)="loadPage('previous')">
+                    <span class="page-link page-navigation center">Previous</span>
+                  </li>
+                  <li class="page-item active">
+                    <span class="page-link">{{ currentPage }} / {{ totalPages }}</span>
+                  </li>
+                  <li class="page-item w-90" [ngClass]="{'disabled': currentPage == totalPages}">
+                    <span class="page-link page-navigation center" (click)="loadPage('next')">Next</span>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </ng-container>
+  </form>
+</div>

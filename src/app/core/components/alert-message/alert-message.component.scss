@@ -1,0 +1,132 @@
+@import "src/styles/variables.scss";
+
+.alert-container {
+  @mixin arrow($backgroundColour) {
+
+    border: 1px solid $backgroundColour;
+
+    .message__media {
+      background-color: $backgroundColour;
+      color: $primary-white;
+    }
+
+    &.message--arrow {
+      .message__media {
+
+        &:before,
+        &:after {
+          border-top-color: $backgroundColour;
+        }
+      }
+    }
+  }
+
+  .spring {
+    margin: 0 auto;
+    max-width: 1200px;
+    min-width: 175px;
+    padding: 0;
+  }
+
+  .message {
+    border-radius: 10px;
+    background-color: #4A4D4E;
+    color: $primary-white;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
+
+    &--arrow {
+      margin-bottom: 10px;
+
+      .message__media {
+
+        &:before,
+        &:after {
+          border: 8px solid transparent;
+          display: block;
+          height: 0;
+          width: 0;
+          -ms-transform: rotate(0);
+          transform: rotate(0);
+          left: 50%;
+          margin-left: -8px;
+          content: "";
+          position: absolute;
+          top: 100%;
+        }
+      }
+    }
+
+    &--light,
+    &--light-wrapper {
+      background-color: $primary-white;
+      color: #333;
+    }
+
+    &--note,
+    &--note-wrapper {
+      color: #77797A;
+      border-color: #A3A5A5;
+    }
+
+    &__media {
+      border-right: none;
+      padding: 11px 15px;
+      position: relative;
+      border-bottom-left-radius: 9px;
+      border-top-left-radius: 9px;
+    }
+
+    &--error {
+      @include arrow($message-error);
+    }
+
+    &--success {
+      @include arrow($message-success);
+    }
+
+    &--info {
+      @include arrow($message-info);
+    }
+
+    &--warning {
+      @include arrow($message-warning);
+    }
+
+    &__text {
+      padding: 0.888rem 1rem;
+    }
+
+  }
+
+  .caption {
+    display: table;
+
+    &__media,
+    &__text {
+      display: table-cell;
+      vertical-align: middle;
+
+      &--top {
+        vertical-align: top;
+      }
+    }
+  }
+
+  .relative {
+    position: relative;
+  }
+
+  @media only screen and (max-width: 1024px) {
+    .spring {
+      padding: 0 20px;
+    }
+  }
+
+  .icon-size {
+    width: 2em;
+  }
+
+}

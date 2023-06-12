@@ -1,0 +1,208 @@
+@import "src/styles/variables.scss";
+
+
+.navbar {
+  &.main-menu {
+    padding: 0.5rem;
+  }
+  &-toggler-icon {
+    cursor: pointer;
+  }
+
+  &-text a {
+    h4 {
+      margin-bottom: 0;
+      font-size: 1.333rem;
+    }
+
+    &:hover {
+      text-decoration: none;
+
+      h4 {
+        color: #CCCCCC;
+      }
+    }
+  }
+
+  .text-color {
+    color: #FFFFFF;
+  }
+
+  .iconPadding {
+    padding-right: 16px;
+  }
+}
+
+
+.header-block {
+  background: $primary-background;
+}
+
+h3 {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  margin-bottom: 0;
+  color: $primary-white;
+}
+
+.app-logo img {
+  margin-top: 15px;
+}
+
+.header-title {
+  display: inline-block;
+  vertical-align: middle;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.user-company {
+  display: block;
+  padding-right: 15px;
+}
+
+.user-company span:first-child {
+  padding-right: 10px;
+}
+
+.squarecorners {
+  background-clip: unset;
+}
+
+.select-margin-bottom {
+  margin-bottom: 17px;
+}
+
+.select-margin-bottom-search {
+  margin-bottom: 23px;
+}
+
+.navbar-toggler {
+  border: 0px solid transparent;
+  padding-left:0;
+  padding-right:0;
+}
+
+.dropdown-menu {
+  min-width: 14rem;
+}
+
+.app-name-block {
+  width: 230px;
+  border-right: 1px solid white;
+  margin-right: 30px;
+}
+
+.search-bar-block {
+  width: 500px;
+}
+
+.link-active {
+  background-color: $secondary-blue-grey;
+}
+
+@media(min-width:992px) {
+  .user-profile-button {
+    position: absolute;
+    right: 30px;
+    top: 18px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .app-name-block {
+    border-right: none;
+    width: unset;
+    margin-right: unset;
+  }
+
+  .search-bar-block {
+    margin-left: 16px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .navbar-collapse {
+    flex-basis: unset;
+  }
+}
+
+@media all and (max-width: 767px) {
+
+  .navbar-dark {
+    position:relative;
+    .navbar-brand {
+      position:absolute;
+      left:50%;
+      top: 12px;
+      transform:translateX(-50%);
+      font-size: 15px;
+    }
+  }
+  .navbar-nav {
+    margin-top:15px;
+  }
+
+  .logo {
+    width: 25px;
+    height: 25px;
+    margin-top: 0px;
+  }
+
+  .mobile-menu {
+    width: 17px;
+    height: 17px;
+    margin-bottom: 9px;
+  }
+
+  .header-block {
+    height: auto;
+    border-bottom: 1px solid red;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  .dropdown-btn {
+    height: unset !important;
+    width: unset !important;
+    margin-right: 0 !important;
+  }
+
+  .search-dropdown-box {
+    padding: 2%;
+    margin: 0 auto;
+  }
+
+  .custom-page-title {
+    padding: 11px;
+    font-size: 1.27rem;
+    width: 60%;
+    text-align: center;
+    color: $primary-white;
+    border: none;
+  }
+
+  .navbar-brand {
+    margin-right: 10px;
+  }
+
+  .nav-link {
+    display: block;
+    padding: 10px;
+    color: $primary-white !important;
+    font-size: 15px;
+  }
+
+  li.nav-item {
+    padding: 1px 0px 8px 0px;
+    border-top: 1px solid #dcdcdc29;
+  }
+}
+
+
+.small-opt-container {
+  right: 15px;
+  top: 8px;
+}

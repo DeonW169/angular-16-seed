@@ -1,0 +1,65 @@
+$primary-grey-40: #AAABAA;
+$primary-grey-20: #D5D5D4;
+
+$theme-colors: ("primary": #171c8f,
+  "secondary": #ed1c24,
+  "tertiary": #4faaff,
+  "danger": #BD0000);
+
+// Primary colors
+$primary-grey: #4A4D4E;
+$primary-red: #ed1c24;
+$primary-white: #FFFFFF;
+$primary-blue: #171c8f;
+$primary-text-color: #A5A1A5;
+
+// Secondary colors
+$secondary-black: #000000;
+$secondary-green: #A8B400;
+$secondary-orange: #EB9700;
+$secondary-purple: #9C2AA0;
+$secondary-maroon: #5E2750;
+$secondary-red: #BD0000;
+$secondary-turqoise: #00B0CA;
+$secondary-blue: #007C92;
+$secondary-yellow: #FECB00;
+$secondary-blue-grey: rgba(255, 255, 255, 0.3);
+
+// Background color
+$primary-background: #171c8f;
+
+// Scaffolding colors
+$scaffolding-grey-70: #333333;
+$scaffolding-grey-60: #666666;
+$scaffolding-grey-50: #999999;
+$scaffolding-grey-40: #AFAFAF;
+$scaffolding-grey-30: #CCCCCC;
+$scaffolding-grey-20: #EBEBEB;
+$scaffolding-grey-10: #F4F4F4;
+
+// Transparency colors
+$transparency-l-green: rgba(68, 94, 39, 0.38);
+$transparency-l-brown: rgba(228, 151, 38, 0.60);
+$transparency-l-maroon: rgba(171, 16, 16, 0.55);
+
+// Accessibility
+$accessibility-green: #428600;
+$accessibility-orange: #FF5400;
+
+//controls and progressbar bar
+$progress-bar-navy-light: #3dc7ab;
+$progress-bar-primary : #1c84c6;
+$progress-bar-info : #23c6c8;
+$progress-bar-warning : #f8ac59;
+$progress-bar-danger : #ed5565;
+$progress-bar-success : #2fb82f;
+$control-action-button: #4eaaff;
+
+// Alert messages
+$message-success: #2fb82f;
+$message-info: #4C7FD0;
+$message-warning: #f8ac59;
+$message-error: #BD0000;
+
+//btn overrides
+$enable-rounded: false;

@@ -1,0 +1,14 @@
+<div class="container-fluid">
+  <div class="row loader" *ngIf="loading">
+    <div class="app-loading-overlay text-center loader" ng-show="$ctrl.active">
+      <div class="app-loading-spinner">
+        <div class="loader-container">
+          <i class="fa fa-spinner fa-spin fa-4x" style="color:#171c8f;"></i>
+        </div>
+        <div ng-if="$ctrl.active" class="app-loading-text" [innerHtml]="loadingText">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-content *ngIf="!loading"></ng-content>

@@ -1,0 +1,30 @@
+@import "src/styles/variables.scss";
+
+.profile-div {
+    height: 50px;
+    width: 50px;
+    background-color: $secondary-blue-grey;
+    padding: 7px 3px 5px 0px;
+    text-align: center;
+}
+
+.user-div {
+    display: inline-block;
+    margin-left: 2px;
+}
+
+.user-div .userLetter {
+    color: white;
+    font-size: 22px;
+}
+
+.username-text {
+    color: $scaffolding-grey-40;
+}
+.menu-action {
+    cursor: pointer;
+}
+.user-div .dropdown-menu {
+    right: 0;
+    left: unset;
+}

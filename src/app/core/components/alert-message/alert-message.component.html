@@ -1,0 +1,22 @@
+<div class="alert-container" ngClass="{ 'pt-3': !showArrow }">
+  <div class="spring">
+    <div class="">
+      <ng-container *ngFor="let alert of alertTypes">
+        <div *ngIf="alert.errorType === errorType" class="message message--light message--{{ errorType }}"
+          [ngClass]="{ 'message--arrow': showArrow }">
+          <div class="caption">
+            <div class="caption__media caption__media--top message__media" *ngIf="errorType != 'note'">
+              <span class="fa-stack fa-md icon-size">
+                <i class="fa fa-info-circle fa-2x"></i>
+              </span>
+            </div>
+            <div class="caption__text caption__text--top message__text">
+              {{ message }}
+              <ng-content></ng-content>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<!-- normal screens -->
+<nav class="navbar navbar-expand-lg navbar-dark header-block d-none d-md-flex sticky-top" *ngIf="showHeader">
+  <nav class="navbar main-menu">
+    <a class="navbar-brand">
+      <img src="../../../../assets/icons/whitelogo.png" height="50" class="d-inline-block align-top" alt="Kwikspace">
+      <ul class="navbar-nav d-inline">
+        <li class="navbar-text px-3 mt-2" [ngClass]="{'app-name-block': dashboardRoleCheck()}">
+          <a [routerLink]="'/'">
+            <!-- <h4>Kwikspace</h4> -->
+          </a>
+        </li>
+      </ul>
+    </a>
+  </nav>
+  <div class="collapse navbar-collapse">
+    <!-- <ul class="navbar-nav mr-auto" [hidden]="!token">
+      <li class="navbar-text px-3 nav-item" [routerLinkActive]="['link-active']">
+        <a routerLink="">Home</a>
+      </li>
+    </ul> -->
+  </div>
+  <form class="user-profile-button form-inline my-2 my-lg-0">
+    <button type="button" class="btn btn-primary" (click)="logout()">Logout</button>
+    <app-profile-button [hidden]="!token"></app-profile-button>
+  </form>
+</nav>
+
+<!-- mobile -->
+<div class="wrapper" *ngIf="showHeader">
+  <div class="navbar-dark d-md-none">
+    <nav class="navbar navbar-expand-lg header-block">
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+          data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" [routerLink]="'/'">
+          <img src="../../../../assets/icons/whitelogo.png" width="150" class="d-inline-block align-middle"
+        alt="Kwikspace">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto" [hidden]="!token">
+            <ng-container *ngFor="let nav of navItems">
+              <li class="navbar-text px-3 pt-2 nav-item" [ngClass]="{'active' : getActiveRoute() === nav.route}" (click)="setActiveTab(nav.tab)">
+                <a>{{ nav.name }}</a>
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+        <form class="form-inline small-opt-container position-absolute">
+          <app-portal-menu *ngIf="showPortalMenu"></app-portal-menu>
+          <app-profile-button [hidden]="!token"></app-profile-button>
+        </form>
+
+    </nav>
+    
+  </div>
+</div>

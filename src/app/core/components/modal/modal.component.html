@@ -1,0 +1,35 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title text-color">{{title | titlecase}}</h4>
+    <!-- <button type="button" class="btn bg-transparent border-0" (click)="close()">
+      <fas[name]="'close'" [size]="'lg'"></fa>
+    </button> -->
+  </div>
+  <div class="modal-body">
+    <div class="card border-info mb-3" *ngIf="showInformationBlock">
+      <div class="card-header bg-info text-white d-flex align-items-center" href="#collapseExample" role="button"
+        aria-expanded="false" aria-controls="collapseExample">
+        <span name="fa fa-info-circle" class="mr-2">
+        </span>
+        Information
+      </div>
+      <div class="card-body text-info collapse show" id="collapseExample">
+        <p class="card-text">
+          <ng-content select="[info-panel]"></ng-content>
+        </p>
+      </div>
+    </div>
+    <ng-content select="[modal-content]"></ng-content>
+  </div>
+  <div class="modal-footer" *ngIf="showFooterActions">
+    <button type="button" class="btn btn-outline-dark" (click)="close()" *ngIf="!showActionButton">Close</button>
+    <div *ngIf="showActionButton">
+      <button type="button" class="btn btn-primary ml-3" (click)="save()"
+        [disabled]="isDisabled || actionButtonBusy">
+        <i *ngIf="actionButtonBusy" class="fa fa-spinner fa-spin mr-1"></i>{{actionButtonLabel}}
+      </button>
+      <button type="button" class="btn btn-primary ml-3" (click)="saveSecondary()" *ngIf="hasSecondarySave"
+        [disabled]="isDisabled">{{actionButtonSecondaryLabel}}</button>
+    </div>
+  </div>
+</ng-template>

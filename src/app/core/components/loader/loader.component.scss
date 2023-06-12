@@ -1,0 +1,26 @@
+@import "src/styles/variables.scss";
+
+.loader {
+  display: block;
+  margin-bottom: 20px;
+
+  .app-loading-text {
+    color: $primary-blue;
+  }
+
+  .app-loading-overlay {
+    padding: 1px 10px 10px 10px;
+  }
+
+  /**** CI ****/
+  .loader-container {
+    margin: 16px auto;
+    width: 60px;
+    height: 54px;
+    position: relative;
+  }
+
+  .ts-loader-text {
+    text-align: center;
+  }
+}

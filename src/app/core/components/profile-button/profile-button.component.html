@@ -1,0 +1,14 @@
+<div class="profile-div border rounded-circle">
+  <li class="nav-item dropdown user-div">
+    <a class=" dropdown-toggle userLetter" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
+      {{firstLetter}}
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <div class="dropdown-item username-text">{{userName}}</div>
+      <div class="dropdown-divider d-block d-md-none"></div>
+      <a class="dropdown-item menu-action d-block d-md-none" (click)="logout()">Logout</a>
+    </div>
+  </li>
+  
+</div>
