@@ -23,7 +23,7 @@ export class TokenService implements HttpInterceptor {
   constructor(
     private storage: LocalStorageService,
     private store: Store<RootStoreState.RootState>
-  ) {}
+  ) { }
 
   intercept(
     req: HttpRequest<any>,

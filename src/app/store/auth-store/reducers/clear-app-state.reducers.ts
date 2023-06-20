@@ -1,6 +1,6 @@
-import {AuthActionTypes} from '../actions/auth.actions';
-import {RootState} from '../../state';
-import {ActionReducer} from '@ngrx/store';
+import { All, AuthActionTypes } from '../actions/auth.actions';
+import { RootState } from '../../state';
+import { ActionReducer } from '@ngrx/store';
 
 export function clearState(reducer: ActionReducer<RootState>): ActionReducer<RootState> {
   return (state: RootState, action: any): RootState => {
@@ -9,4 +9,11 @@ export function clearState(reducer: ActionReducer<RootState>): ActionReducer<Roo
     }
     return reducer(state, action);
   };
+}
+
+export function reducer(state: RootState, action: All): RootState {
+  if (action.type === AuthActionTypes.LOGOUT) {
+    state = undefined;
+  }
+  return reducer(state, action);
 }

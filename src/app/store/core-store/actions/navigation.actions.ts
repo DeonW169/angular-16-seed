@@ -2,9 +2,9 @@ import { Action } from '@ngrx/store';
 import { NavItem } from 'src/app/models/NavItem';
 
 export enum NavActionTypes {
-  SET_AUTHORISED_NAVS = '[Navigation] Set authorised nav items',
-  GET_AUTHORISED_NAVS = '[Navigation] Get authorised nav items',
-  CLEAR_AUTHORISED_NAVS = '[Navigation] Clear authorised nav items',
+  SET_AUTHORISED_NAVS = '[Navigation] Set authorized nav items',
+  GET_AUTHORISED_NAVS = '[Navigation] Get authorized nav items',
+  CLEAR_AUTHORISED_NAVS = '[Navigation] Clear authorized nav items',
 }
 
 export class SetAuthorisedNavs implements Action {

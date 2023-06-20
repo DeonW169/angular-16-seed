@@ -1,11 +1,11 @@
 import { NavActions, NavActionTypes } from '../actions/navigation.actions';
 
 export interface NavState {
-  authorisedNavItems: any[];
+  authorizedNavItems: any[];
 }
 
 const initialState: NavState = {
-  authorisedNavItems: [],
+  authorizedNavItems: [],
 };
 
 export function reducer(state = initialState, action: NavActions): NavState {
@@ -13,13 +13,13 @@ export function reducer(state = initialState, action: NavActions): NavState {
     case NavActionTypes.SET_AUTHORISED_NAVS:
       return {
         ...state,
-        authorisedNavItems: action.navs,
+        authorizedNavItems: action.navs,
       };
 
     case NavActionTypes.CLEAR_AUTHORISED_NAVS:
       return {
         ...state,
-        authorisedNavItems: [],
+        authorizedNavItems: [],
       };
 
     default:

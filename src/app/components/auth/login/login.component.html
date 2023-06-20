@@ -1,165 +1,75 @@
-<section class="h-100 container-fluid">
-  <!-- web view -->
-  <div class="row h-100 background-white" *ngIf="!(isMobile | async)">
-    <div class="col-12 col-lg-7 ml-0 mr-0 col-5-container vertical-center">
+<section class="">
+  <div class="row">
+    <div class="col-sm-6 ml-0 mr-0 left-pane">
       <div class="row mt-2">
         <div class="col-sm-12 d-flex justify-content-center">
-          <img class="fade-in image-height login-image" src="./assets/login.png" alt="logo">
+          <img class="icon-height" src="./assets/icons/logo.svg" alt="logo">
         </div>
       </div>
-    </div>
-    <div class="col-12 col-lg-5 ml-0 mr-0 col-5-container vertical-center">
-      <div class="row justify-content-center align-items-center mt-2">
-        <div class="col-md-10 col-lg-12">
-          <div class="row mb-2">
-            <div class="col-sm-12 d-flex justify-content-center">
-              <img class="icon-height" src="./assets/icons/bluelogo.png" alt="logo">
-            </div>
-          </div>
-          <div class="row mb-4">
-            <div class="col-sm-12 d-flex justify-content-center">
-              <span class="link btn-link-active">
-                LOGIN
-              </span>
-            </div>
-          </div>
-          <div class="row justify-content-center">
-            <div class="col-sm-8">
-              <div *ngIf="showAlert">
-                <tan-alert-message [errorType]="alertType" [message]="alertMessage"></tan-alert-message>
-              </div>
-              <form [formGroup]="loginForm">
-                <div class="form-group">
-                  <label for="username">Email</label>
-                  <input type="text" class="form-control form-control-lg form-input-h" formControlName="username"
-                    id="username">
-                  <span class="error"
-                    *ngIf="loginForm.get('username').errors?.required && loginForm.get('username').touched">Email is
-                    required</span>
-                </div>
-                <div class="form-group">
-                  <label for="password">Password</label>
-                  <div class="input-group">
-                    <input [type]="fieldTextType ? 'text' : 'password'" class="form-control"
-                      formControlName="password" />
-                    <div class="input-group-append">
-                      <span class="input-group-text">
-                        <i class="fa" [ngClass]="{
-  'fa-eye-slash': !fieldTextType,
-  'fa-eye': fieldTextType
-  }" (click)="toggleFieldTextType()"></i>
-                      </span>
-                    </div>
-                    <span class="error"
-                      *ngIf="loginForm.get('password').errors?.required && loginForm.get('password').touched">Password
-                      is required</span>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <button class="btn btn-primary btn-block btn-lg" type="submit"
-                    [disabled]="!loginForm.valid || loading" (click)="login()">
-                    <span *ngIf="loading">
-                      <i class="fa fa-spinner fa-spin"></i>
-                      Logging in
-                    </span>
-                    <span *ngIf="!loading">Login</span>
-                  </button>
-                </div>
-                <div class="form-inline form-group d-flex justify-content-center mt-3">
-                  <label class="control-label">
-                    <a href="javascript: void(0);" class="form-links" (click)="register()">
-                      <span>Register</span>
-                    </a>
-                  </label>
-                </div>
-                <div class="form-inline form-group d-flex justify-content-center mt-3">
-                  <label class="control-label">
-                    <a href="javascript: void(0);" class="form-links" (click)="forgotPassword()">
-                      <span>Forgot Password?</span>
-                    </a>
-                  </label>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- mobile view -->
-  <div class="row h-100 background-white" *ngIf="(isMobile | async)">
-    <div class="col-12 col-lg-7 ml-0 mr-0 col-5-container vertical-center">
-      <div class="row mb-2">
+      <div class="row mt-2">
         <div class="col-sm-12 d-flex justify-content-center">
-          <img class="icon-height" src="./assets/icons/bluelogo.png" alt="logo">
+          <img class="fade-in image-height" src="./assets/images/bulk_male.svg" alt="logo">
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="col-sm-12 d-flex justify-content-center">
-            <img class="fade-in image-height login-image" src="./assets/login.png" alt="logo">
-          </div>
-        </div>
-      </div>
+    </div>
+
+    <div class="col-sm-6 ml-0 mr-0 col-5-containter pt-0">
       <div class="row justify-content-center align-items-center mt-2">
         <div class="col-sm-12">
+          <div class="row mb-4">
+            <div class="col-sm-12 d-flex justify-content-center">
+              <img class="icon-height" src="./assets/icons/bv-blue.svg" alt="logo">
+            </div>
+          </div>
+
           <div class="row mb-4">
             <div class="col-sm-12 d-flex justify-content-center">
               <span class="link btn-link-active">
                 LOGIN
               </span>
+              <span class="link btn-link-inactive" (click)="register()">
+                REGISTER
+              </span>
             </div>
           </div>
+
           <div class="row justify-content-center">
             <div class="col-sm-8">
               <div *ngIf="showAlert">
-                <tan-alert-message [errorType]="alertType" [message]="alertMessage"></tan-alert-message>
+                <bv-alert-message [errorType]="alertType" [message]="alertMessage"></bv-alert-message>
               </div>
+
               <form [formGroup]="loginForm">
                 <div class="form-group">
-                  <label for="username">Email</label>
-                  <input type="text" class="form-control form-control-lg form-input-h" formControlName="username"
-                    id="username">
+                  <label for="email">Email</label>
+                  <input type="text" class="form-control form-control-lg form-input-h" formControlName="email"
+                    id="email" autocomplete="email">
                   <span class="error"
-                    *ngIf="loginForm.get('username').errors?.required && loginForm.get('username').touched">Email is
+                    *ngIf="loginForm.get('email').errors?.required && loginForm.get('email').touched">Email is
                     required</span>
                 </div>
+
                 <div class="form-group">
                   <label for="password">Password</label>
-                  <div class="input-group">
-                    <input [type]="fieldTextType ? 'text' : 'password'" class="form-control"
-                      formControlName="password" />
-                    <div class="input-group-append">
-                      <span class="input-group-text">
-                        <i class="fa" [ngClass]="{
-  'fa-eye-slash': !fieldTextType,
-  'fa-eye': fieldTextType
-  }" (click)="toggleFieldTextType()"></i>
-                      </span>
-                    </div>
-                    <span class="error"
-                      *ngIf="loginForm.get('password').errors?.required && loginForm.get('password').touched">Password
-                      is required</span>
-                  </div>
+                  <input type="password" class="form-control form-control-lg form-input-h" formControlName="password"
+                    id="password" autocomplete="current-password">
+                  <span class="error"
+                    *ngIf="loginForm.get('password').errors?.required && loginForm.get('password').touched">Password is
+                    required</span>
                 </div>
+
                 <div class="form-group">
                   <button class="btn btn-primary btn-block btn-lg" type="submit"
                     [disabled]="!loginForm.valid || loading" (click)="login()">
                     <span *ngIf="loading">
-                      <i class="fa fa-spinner fa-spin"></i>
+                      <i class="fas fa-spinner fa-spin"></i>
                       Logging in
                     </span>
                     <span *ngIf="!loading">Login</span>
                   </button>
                 </div>
-                <div class="form-inline form-group d-flex justify-content-center mt-3">
-                  <label class="control-label">
-                    <a href="javascript: void(0);" class="form-links" (click)="register()">
-                      <span>Register</span>
-                    </a>
-                  </label>
-                </div>
-                <div class="form-inline form-group d-flex justify-content-center mt-3">
+
+                <div class="form-inline form-group d-flex justify-content-center">
                   <label class="control-label">
                     <a href="javascript: void(0);" class="form-links" (click)="forgotPassword()">
                       <span>Forgot Password?</span>

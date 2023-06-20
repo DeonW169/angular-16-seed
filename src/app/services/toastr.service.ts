@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
-export class TanToastrService {
-  constructor(private toaster: ToastrService) {}
+export class AppToastrService {
+  constructor(private toaster: ToastrService) { }
 
   showSuccessToaster(
     title: string | '',

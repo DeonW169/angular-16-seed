@@ -28,7 +28,7 @@ import {
 import { EndPoints, AppRoutes } from "../../../shared/endpoints.enum";
 import { LocalStorageService } from "src/app/services/local-storage.service";
 import { RootStoreState } from "../..";
-import { TanToastrService } from "src/app/services/toastr.service";
+import { AppToastrService } from "src/app/services/toastr.service";
 
 @Injectable()
 export class AuthEffects {
@@ -39,7 +39,7 @@ export class AuthEffects {
     private storage: LocalStorageService,
     private store: Store<RootStoreState.RootState>,
     private headerService: HeaderService,
-    private toaster: TanToastrService,
+    private toaster: AppToastrService,
   ) { }
 
   @Effect()
@@ -96,7 +96,7 @@ export class AuthEffects {
   GetCurrentUserSuccess$: Observable<any> = this.actions$.pipe(
     ofType<LogInSuccess>(AuthActionTypes.GET_CURRENT_USER_SUCCESS),
     tap((data) => {
-      this.router.navigate([AppRoutes.PWA + AppRoutes.QUOTE_LIST]);
+      this.router.navigate([AppRoutes.DASHBOARD]);
     })
   );
 

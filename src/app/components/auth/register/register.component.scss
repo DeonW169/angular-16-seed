@@ -24,6 +24,19 @@
     cursor: pointer;
 }
 
+.select-box {
+    padding: 2px 8px;
+}
+
+.terms-label {
+    color: $primary-blue-grey;
+}
+
+.agree-text {
+    text-decoration: underline;
+    font-weight: 600;
+}
+
 .fade-in {
     opacity: 0;
     -webkit-animation: fadeIn ease-in 1;

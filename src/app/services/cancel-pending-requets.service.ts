@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class CancelPendingRequetsService {
+export class CancelPendingRequestService {
   private cancelPendingRequests$ = new Subject<void>();
   constructor() {}
 

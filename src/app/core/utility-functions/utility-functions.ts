@@ -1,8 +1,8 @@
 import { FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { RootState } from 'src/app/root-store/root-state';
+import { RootState } from 'src/app/store/state';
 
-export function createPayloadFromCamelCaseObj(snakeCaseObj, updatedSettingObj) {
+export function createPayloadFromCamelCaseObj(snakeCaseObj: any, updatedSettingObj: { [x: string]: any; }) {
     const updateObj = camelToSnakeCase(JSON.parse(JSON.stringify(snakeCaseObj)));
     changeVal(
         updateObj,
@@ -12,7 +12,7 @@ export function createPayloadFromCamelCaseObj(snakeCaseObj, updatedSettingObj) {
     return updateObj;
 }
 
-export function changeVal(obj, key, value) {
+export function changeVal(obj: { [x: string]: any; }, key: string, value: any) {
     if (typeof obj !== 'object' || !obj) {
         return;
     }
@@ -25,20 +25,20 @@ export function changeVal(obj, key, value) {
     });
 }
 
-export function camelToSnakeCaseString(val) {
+export function camelToSnakeCaseString(val: string) {
     return val.split(/(?=[A-Z])/).join('_').toLocaleLowerCase();
 }
 
 // Wrap the function that alters the object and send it a clone
-export function camelToSnakeCase(inpt) {
-    const obj = deepCopy(inpt);
+export function camelToSnakeCase(input: any) {
+    const obj = deepCopy(input);
     return recusiveCamelToSnakeCase(obj);
 }
 
 // This function changes the object by reference
-function recusiveCamelToSnakeCase(obj) {
-    const traverseArr = arr => {
-        arr.forEach(v => {
+function recusiveCamelToSnakeCase(obj: { [x: string]: any; }) {
+    const traverseArr = (arr: any[]) => {
+        arr.forEach((v: { constructor: ArrayConstructor | ObjectConstructor; }) => {
             if (v) {
                 if (v.constructor === Object) {
                     v = camelToSnakeCase(v);
@@ -108,7 +108,7 @@ function validationReader(errors: any) {
     return '';
 }
 
-export function snakeToCamelCase(o) {
+export function snakeToCamelCase(o: any[]) {
     let newO, origKey, newKeys, newKey, value;
     if (o instanceof Array) {
         return o.map(value => {
@@ -145,7 +145,7 @@ export function snakeToCamelCase(o) {
     return newO;
 }
 
-export function returnErrorMessage(error, modifyObject = true): string {
+export function returnErrorMessage(error: { error: string; hasOwnProperty: (arg0: string) => any; }, modifyObject = true): string {
     let errorMessage;
     if (!modifyObject) {
         return error.error;
@@ -174,7 +174,7 @@ function getErrorMessage(errorMessage: any) {
     }
 }
 
-export function serverErrors(validationErrorsObject, componentReactiveForm: FormGroup, store: Store<RootState>): void {
+export function serverErrors(validationErrorsObject: any, componentReactiveForm: FormGroup, store: Store<RootState>): void {
     let nonFormErrors = '';
     const objectConvertProp = snakeToCamelCase(validationErrorsObject);
     Object.keys(objectConvertProp).forEach((property) => {
@@ -193,7 +193,7 @@ export function serverErrors(validationErrorsObject, componentReactiveForm: Form
     });
 }
 
-export function deepCopy(src) {
+export function deepCopy(src: { [x: string]: any; }) {
     const target = Array.isArray(src) ? [] : {};
     // tslint:disable-next-line: forin
     for (const key in src) {

@@ -1,4 +1,3 @@
-import { environment } from 'src/environments/environment';
 export class EndPoints {
   // Authentication
   public static readonly LOGIN = 'portal/accounts/login/';
@@ -13,6 +12,6 @@ export class AppRoutes {
   public static readonly LOGIN = 'login';
   public static readonly REGISTER = 'portal/accounts/register/user/';
   public static readonly FORGOT_PASSWORD = 'accounts/password_reset/';
-  
+
   public static readonly DASHBOARD = '/';
 }

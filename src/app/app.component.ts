@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, ActivationEnd, NavigationEnd } from '@angular/router';
-import { CancelPendingRequetsService } from './services/cancel-pending-requets.service';
+import { CancelPendingRequestService } from './services/cancel-pending-requets.service';
 import { environment } from './../environments/environment';
 import { Title } from '@angular/platform-browser';
 
@@ -15,7 +15,7 @@ export class AppComponent {
 
   constructor(
     private router: Router,
-    private cancelRequestsService: CancelPendingRequetsService,
+    private cancelRequestsService: CancelPendingRequestService,
     private pageTitles: Title
   ) {
     this.router.events.subscribe((event) => {

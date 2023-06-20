@@ -1,7 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { SortableHeaderDirective } from './../../directives/sortable.directive';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { TableComponent } from './table.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -33,7 +32,6 @@ describe('TableComponent', () => {
       imports: [
         ScrollDispatchModule,
         HttpClientModule,
-        AngularFontAwesomeModule,
         CoreModule,
         SharedModule,
         RouterTestingModule.withRoutes([{

@@ -26,7 +26,7 @@ import { ProfileIconMenuComponent } from './core/components/profile-icon-menu/pr
 
 /** Services */
 import { TokenService } from './services/token.service';
-import { TanToastrService } from './services/toastr.service';
+import { AppToastrService } from './services/toastr.service';
 import { RoutingStateService } from './services/routing-state.service';
 
 /** Environment */
@@ -43,7 +43,7 @@ import { environment } from '../environments/environment';
     EffectsModule.forRoot([]),
   ],
   providers: [
-    TanToastrService,
+    AppToastrService,
     RoutingStateService,
     { provide: HTTP_INTERCEPTORS, useClass: TokenService, multi: true },
     { provide: Window, useValue: window },

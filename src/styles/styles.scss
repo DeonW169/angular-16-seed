@@ -1,12 +1,12 @@
-@import 'variables';
-@import '~bootstrap/scss/bootstrap';
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
-@import 'quote_path';
+@import "variables";
+@import "~bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap");
+@import "quote_path";
 
 html,
 body {
   height: 100%;
-  font-family: 'Roboto', sans-serif !important;
+  font-family: "Roboto", sans-serif !important;
   overflow-x: hidden;
 }
 
@@ -273,7 +273,7 @@ button.close {
 }
 
 .cancel-link {
-  color: #E60000;
+  color: #e60000;
 }
 
 .cache-data-icon {
@@ -323,7 +323,7 @@ button.close {
   position: relative;
   margin-top: 2px;
   margin-bottom: 0;
-  margin-right: 10px
+  margin-right: 10px;
 }
 
 .disable-filters {
@@ -360,7 +360,6 @@ button.close {
   -moz-box-shadow: 2px 2px 5px 1px #333;
   box-shadow: 2px 2px 5px 1px #333;
 }
-
 
 #dateRange {
   line-height: 0.7;
@@ -415,7 +414,6 @@ button.close {
 
 /*FOR USE ON THE AUTH PAGES*/
 @media all and (max-width: 768px) {
-
   .submit-group {
     margin-top: 36%;
   }
@@ -423,7 +421,6 @@ button.close {
   body {
     background: $white;
   }
-
 
   html,
   body {
@@ -475,7 +472,7 @@ button.close {
 
   // details pages
   .filter-options-buttons {
-    width: 100%
+    width: 100%;
   }
 
   g.highcharts-axis-labels.highcharts-xaxis-labels>text>tspan:nth-child(2n) {
@@ -540,7 +537,6 @@ button.close {
     top: 30px;
     width: 270px;
     right: 100%;
-
   }
 }
 
@@ -624,11 +620,8 @@ table {
       -moz-box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.25);
       box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.25);
     }
-
   }
 }
-
-
 
 .primary-button {
   min-width: 150px;
@@ -734,7 +727,6 @@ table {
   width: 70% !important;
   margin-left: 15% !important;
   margin-right: 15% !important;
-
 }
 
 .margin-top-n {
@@ -746,7 +738,6 @@ table {
 .form-input-h {
   height: 38px !important;
 }
-
 
 /* PAGINATION **/
 .page-navigation {

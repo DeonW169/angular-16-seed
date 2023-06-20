@@ -1,0 +1,165 @@
+<section class="">
+  <div class="row">
+    <div class="col-sm-6 ml-0 mr-0 left-pane">
+      <div class="row mt-2">
+        <div class="col-sm-12 d-flex justify-content-center">
+          <img class="icon-height" src="./assets/icons/logo.svg" alt="logo">
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-sm-12 d-flex justify-content-center">
+          <img class="fade-in image-height" src="./assets/images/large_male.svg" alt="logo">
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6 ml-0 mr-0 col-5-containter pt-0">
+      <div class="row justify-content-center align-items-center mt-2">
+        <div class="col-sm-12">
+          <div class="row mb-4">
+            <div class="col-sm-12 d-flex justify-content-center">
+              <img class="icon-height" src="./assets/icons/bv-blue.svg" alt="logo">
+            </div>
+          </div>
+
+          <div class="row mb-4">
+            <div class="col-sm-12 d-flex justify-content-center">
+              <span class="link btn-link-inactive" (click)="onCancel()">
+                LOGIN
+              </span>
+              <span class="link btn-link-active">
+                REGISTER
+              </span>
+            </div>
+          </div>
+
+          <div class="row justify-content-center">
+            <div class="col-sm-8">
+              <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+                <div *ngIf="showAlert">
+                  <bv-alert-message [errorType]="alertType" [message]="alertMessage"></bv-alert-message>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="name">First name</label>
+                      <input type="text" class="form-control form-control-lg form-input-h" formControlName="name"
+                        id="name">
+                      <span class="error"
+                        *ngIf="registrationForm.get('name').errors?.required && registrationForm.get('name').touched">First
+                        name is required</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="surname">Surname</label>
+                      <input type="text" class="form-control form-control-lg form-input-h" formControlName="surname"
+                        id="surname">
+                      <span class="error"
+                        *ngIf="registrationForm.get('surname').errors?.required && registrationForm.get('surname').touched">Surname
+                        is required</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="contactNumber">Contact number</label>
+                      <input type="text" class="form-control form-control-lg form-input-h"
+                        formControlName="contactNumber" id="contactNumber">
+                      <span class="error"
+                        *ngIf="registrationForm.get('contactNumber').errors?.required && registrationForm.get('contactNumber').touched">Contact
+                        number is required</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="planType">Subscription type</label>
+                      <select class="form-control form-control-lg form-input-h squarecorners select-box"
+                        formControlName="planType" id="planType">
+                        <option [ngValue]="null">Please select</option>
+                        <option *ngFor="let planType of planTypes" [ngValue]="planType.id">{{planType.name}}</option>
+                      </select>
+                      <span class="error"
+                        *ngIf="registrationForm.get('planType').errors?.required && registrationForm.get('planType').touched">Subscription
+                        type is required</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Email </label>
+                  <input type="email" class="form-control form-control-lg form-input-h" formControlName="email"
+                    id="email">
+                  <span class="error"
+                    *ngIf="registrationForm.get('email').errors?.required && registrationForm.get('email').touched">Email
+                    is required</span>
+                  <span class="error"
+                    *ngIf="registrationForm.get('email').touched && !registrationForm.get('email').errors?.required && registrationForm.get('email').errors?.email">Email
+                    is invalid</span>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="password">Password</label>
+                      <input type="password" class="form-control form-control-lg form-input-h"
+                        formControlName="password" id="password">
+                      <span class="error"
+                        *ngIf="registrationForm.get('password').errors?.required && registrationForm.get('password').touched">Password
+                        is required</span>
+                      <span class="error" *ngIf="registrationForm.get('password').hasError('minlength')">
+                        Password should be atleast 6 characters</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="confirmPassword">Confirm password</label>
+                      <input type="password" class="form-control form-control-lg form-input-h"
+                        formControlName="confirmPassword" id="confirmPassword" (change)="validatePasswordMatch()">
+                      <span class="error"
+                        *ngIf="registrationForm.get('confirmPassword').errors?.required && registrationForm.get('confirmPassword').touched">
+                        Confirm password is required</span>
+                      <span class="error" *ngIf="matchPasswordError">
+                        Passwords do not match</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-check mb-3">
+                  <input type="checkbox" class="form-check-input" id="agreeTerms" formControlName="agreeTerms">
+                  <label class="form-check-label terms-label" for="agreeTerms">Agree to the following policies
+                    <a [routerLink]="['/terms']" class="agree-text"> Terms of use</a>,
+                    <a [routerLink]="['/acceptable-use']" class="agree-text"> Acceptable use</a>,
+                    <a [routerLink]="['/privacy']" class="agree-text"> Privacy policy</a> and
+                    <a [routerLink]="['/subscription']" class="agree-text"> Subscription agreement</a>
+                  </label>
+                </div>
+                <div class="form-check mb-3">
+                  <input type="checkbox" class="form-check-input" id="agreePrivacy" formControlName="agreePrivacy">
+                  <label class="form-check-label terms-label" for="agreePrivacy">I have read and understood the above
+                    policies
+                  </label>
+                </div>
+
+                <div class="form-group d-flex justify-content-center">
+                  <button class="btn btn-primary btn-block btn-lg" type="submit"
+                    [disabled]="!registrationForm.valid || loading">
+                    <span *ngIf="loading">
+                      <i class="fas fa-spinner fa-spin"></i>
+                      Registering
+                    </span>
+                    <span *ngIf="!loading">Register</span>
+                  </button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

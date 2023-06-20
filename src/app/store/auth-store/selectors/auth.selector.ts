@@ -1,12 +1,12 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
-import { RootState } from 'src/app/root-store/root-state';
+import { RootState } from 'src/app/store/state';
 import { } from ".."
 import * as auth from '../reducers/auth.reducers';
 
-import { MainStoreState } from "../state";
+import { AuthStoreState } from "../state";
 import { mainAppFeatureKey } from '../../store-constants';
 
-const getAuthState = createFeatureSelector<RootState, MainStoreState>(mainAppFeatureKey);
+const getAuthState = createFeatureSelector<RootState, AuthStoreState>(mainAppFeatureKey);
 
 export const isUserAuthenticatedState = (state: auth.State) => state.isAuthenticated;
 

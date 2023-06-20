@@ -11,6 +11,10 @@ export const navProducts = AppRoutes.PRODUCT_LIST;
 export const navRentals = AppRoutes.RENTAL_PRICING_LIST;
 export const navTransport = AppRoutes.TRANSPORT_CHARGE_LIST;
 
+export const permissionCustomer = 'customer';
+export const permissionStaff = 'staff';
+export const permissionAdmin = 'admin';
+
 export const navItems: NavItem[] = [
   {
     type: navQuotes,

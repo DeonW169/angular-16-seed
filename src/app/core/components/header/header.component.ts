@@ -16,7 +16,7 @@ import {
   LogOut,
   GetCurrentUser,
 } from "src/app/root-store/main-app-store/actions/auth.actions";
-import { getAuthorisedNavItems } from "src/app/root-store/main-app-store/selectors/navigation.selector";
+import { getAuthorizedNavItems } from "src/app/root-store/main-app-store/selectors/navigation.selector";
 import { MainStoreState } from "src/app/root-store/main-app-store/state";
 import { RootState } from "src/app/root-store/root-state";
 import { CloseSidebar } from "../../../root-store/main-app-store/actions/sidebar-config-menu.actions";

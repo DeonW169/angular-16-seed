@@ -18,7 +18,7 @@ export class HttpRequestService {
   constructor(
     private http: HttpClient,
     protected snakeToCamelCasePipe: SnakeToCamelCasePipe
-  ) {}
+  ) { }
 
   /** GET ALL */
   getAllRequest(getUrl: string): Observable<any> {

@@ -13,7 +13,7 @@ import { AppRoutes } from '../shared/endpoints.enum';
   providedIn: 'root',
 })
 export class LoggedInGuardService implements CanActivate {
-  constructor(private router: Router, private storage: LocalStorageService) {}
+  constructor(private router: Router, private storage: LocalStorageService) { }
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

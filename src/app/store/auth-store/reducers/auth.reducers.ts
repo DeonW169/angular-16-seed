@@ -22,18 +22,22 @@ export interface State {
 
 export const initialState: State = {
   isAuthenticated: false,
-  currentUser: null,
+  currentUser: {
+    id: '',
+    username: '',
+    role: ''
+  },
   alertType: null,
   message: null,
   loading: false,
   error: false,
-  token: null,
+  token: '',
   userLoading: false,
   userError: false,
   logInLoading: false,
-  logInError: null,
+  logInError: false,
   updateUserLoading: false,
-  updateUserError: null,
+  updateUserError: false,
   updateUserSuccess: false,
 };
 
@@ -88,11 +92,11 @@ export function reducer(state = initialState, action: All): State {
         currentUser: {
           id: action.payload.id,
           username: action.payload.username,
+          role: action.payload.role,
           isSuperuser: action.payload.isSuperuser,
           isStaff: action.payload.isStaff,
           groups: action.payload.groups,
           customer: action.payload.customer,
-          salesRep: action.payload.salesRep
         },
         userLoading: false,
         userError: false
@@ -122,11 +126,11 @@ export function reducer(state = initialState, action: All): State {
         currentUser: {
           id: action.payload.id,
           username: action.payload.username,
+          role: action.payload.role,
           isSuperuser: action.payload.isSuperuser,
           isStaff: action.payload.isStaff,
           groups: action.payload.groups,
           customer: action.payload.customer,
-          salesRep: action.payload.salesRep
         },
         updateUserLoading: false,
         updateUserError: false,

@@ -6,7 +6,7 @@ import { DownloadModalComponent } from '../core/modals/download-modal/download-m
   providedIn: 'root',
 })
 export class SharedService {
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal) { }
 
   saveAs(uri: string, filename: string) {
     const link = document.createElement('a');

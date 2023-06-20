@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { MainStoreState } from '../state';
+import { CoreStoreState } from '../state';
 import { RootState } from '../../state';
 import { mainAppFeatureKey } from '../../store-constants';
 
@@ -7,10 +7,10 @@ export const featureKey = mainAppFeatureKey;
 
 export const getNavFeatureState = createFeatureSelector<
   RootState,
-  MainStoreState
+  CoreStoreState
 >(featureKey);
 
-export const getAuthorisedNavItems = createSelector(
+export const getAuthorizedNavItems = createSelector(
   getNavFeatureState,
-  (state: MainStoreState) => state.nav.authorisedNavItems
+  (state: CoreStoreState) => state.nav.authorizedNavItems
 );
